@@ -1,8 +1,9 @@
+import { Link } from "@tanstack/react-router";
 import { Button } from "./ui/button";
 
 export default function Footer() {
   return (
-    <footer className="w-full max-w-5/6 mx-auto mt-20 mb-10 flex flex-col gap-10">
+    <footer className="w-full mt-20 mb-10 flex flex-col gap-10">
       <div className="flex flex-col items-center justify-center gap-5 bg-site-neutral-200 rounded-lg h-100 relative overflow-hidden">
         <div className="absolute inset-y-0 left-0 transform -translate-x-1/5 translate-y-6">
           <img src="assets/images/pattern-fork.svg" alt="Fork" />
@@ -17,8 +18,11 @@ export default function Footer() {
           Hit the button, pick a recipe, and get dinner on the table--fast.
         </span>
         <div className="mt-6">
-          <Button className="font-semibold text-xl py-7 px-8 font-nunito-sans">
-            Browse Recipes
+          <Button
+            className="font-semibold text-xl py-7 px-8 font-nunito-sans"
+            asChild
+          >
+            <Link to="/recipes">Browse Recipes</Link>
           </Button>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import MoreRecipes from "@/components/recipe/more-recipes";
+import RecipeOverview from "@/components/recipe/recipe-overview";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -30,9 +32,9 @@ export const Route = createFileRoute("/recipe/$slug")({
 
 function RouteComponent() {
   const data = Route.useLoaderData();
-  const params = Route.useParams();
+
   return (
-    <div className="container-page pt-12 flex flex-col gap-4">
+    <div className="container-page pt-12 pb-16 flex flex-col gap-4">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -53,11 +55,56 @@ function RouteComponent() {
             alt={data.title}
             className="w-full aspect-square object-cover rounded-lg"
           />
-          <div className="flex flex-col gap-4">
-            <h1 className="text-5xl">{data.title}</h1>
+          <div className="flex flex-col gap-5 max-w-143">
+            <h1 className="text-preset-2">{data.title}</h1>
+            <p className="text-preset-6">{data.overview}</p>
+            <RecipeOverview
+              props={{
+                servings: data.servings,
+                prepMinutes: data.prepMinutes,
+                cookMinutes: data.cookMinutes,
+              }}
+            />
+
+            <div className="flex flex-col gap-4">
+              <h3 className="text-preset-4">Ingredients:</h3>
+              {data.ingredients.map((ingredient, idx) => (
+                <div
+                  key={`${ingredient}-${idx}`}
+                  className="flex items-center gap-2"
+                >
+                  <img
+                    src="/assets/images/icon-bullet-point.svg"
+                    alt={`${ingredient}`}
+                    height={24}
+                    width={24}
+                  />
+                  <p className="text-preset-6">{ingredient}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <h3 className="text-preset-4">Instructions:</h3>
+              {data.instructions.map((instruction, idx) => (
+                <div
+                  key={`${instruction}-${idx}`}
+                  className="flex items-center gap-2"
+                >
+                  <img
+                    src="/assets/images/icon-bullet-point.svg"
+                    alt={`${instruction}`}
+                    height={24}
+                    width={24}
+                  />
+                  <p className="text-preset-6">{instruction}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
+      <MoreRecipes />
     </div>
   );
 }

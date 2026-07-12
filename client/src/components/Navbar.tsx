@@ -28,7 +28,9 @@ export default function Navbar() {
           Recipes
         </Link>
       </div>
-      <Button className="font-semibold text-lg py-7">Browse Recipes</Button>
+      <Button className="font-semibold text-lg py-7" asChild>
+        <Link to="/recipes">Browse Recipes</Link>
+      </Button>
     </nav>
   );
 }

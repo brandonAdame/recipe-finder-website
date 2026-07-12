@@ -1,4 +1,4 @@
-import RecipesGrid from "@/components/recipes-grid";
+import RecipesGrid from "@/components/recipe/recipes-grid";
 import { SERVER_URL } from "@/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { RecipesResponse } from "shared";
